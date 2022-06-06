@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using WebAppProjeto01G1.Models;
 using System.Data;
 using System.Data.OleDb;
+using System.Net;
+using System.Data.Entity;
 
 namespace WebAppProjeto01G1.Controllers
 {
@@ -43,6 +45,57 @@ namespace WebAppProjeto01G1.Controllers
             //context.Fabricantes.Add(fabricante);
             //context.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: Fabricantes/Edit/5
+        [HttpGet]
+        public ActionResult Edit(long? id)
+        {
+            if (id == null)
+            {
+                //return RedirectToAction("PaginaErro");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //Fabricante fabricante = context.Fabricantes.Find(id);
+            Fabricante fabricante = fabricantes.Where(m => m.FabricanteId == id).First();
+            if (fabricante == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fabricante);
+        }
+
+        // POST: Fabricantes/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Fabricante fabricante)
+        {
+            if (ModelState.IsValid)
+            {
+                fabricantes.Remove(
+                  fabricantes.Where(c => c.FabricanteId == fabricante.FabricanteId).First());
+                fabricantes.Add(fabricante);
+                //context.Entry(fabricante).State = EntityState.Modified;
+                //context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(fabricante);
+        }
+
+        // GET: Fabricantes/Details/5
+        public ActionResult Details(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //Fabricante fabricante = context.Fabricantes.Find(id);
+            Fabricante fabricante = fabricantes.Where(m => m.FabricanteId == id).First();
+            if (fabricante == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fabricante);
         }
     }
 }
