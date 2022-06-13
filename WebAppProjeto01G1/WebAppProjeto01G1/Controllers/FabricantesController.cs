@@ -24,8 +24,8 @@ namespace WebAppProjeto01G1.Controllers
         // GET: Fabricantes
         public ActionResult Index()
         {
-            return View(fabricantes);
-            //return View(context.Fabricantes.OrderBy(c => c.Nome));
+            //return View(fabricantes);
+            return View(context.Fabricantes.OrderBy(c => c.Nome));
         }
 
         // GET: Create
