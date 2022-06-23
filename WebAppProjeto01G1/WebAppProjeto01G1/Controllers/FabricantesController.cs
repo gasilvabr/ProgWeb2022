@@ -15,11 +15,11 @@ namespace WebAppProjeto01G1.Controllers
     {
         private EFContext context = new EFContext();
 
-        private static IList<Fabricante> fabricantes = new List<Fabricante>()
+        /*private static IList<Fabricante> fabricantes = new List<Fabricante>()
         {
             new Fabricante() { FabricanteId = 1, Nome = "LG"},
             new Fabricante() { FabricanteId = 2, Nome = "Microsoft"}
-        };
+        };*/
 
         // GET: Fabricantes
         public ActionResult Index()
@@ -40,10 +40,10 @@ namespace WebAppProjeto01G1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Fabricante fabricante)
         {
-            fabricantes.Add(fabricante);
-            fabricante.FabricanteId = fabricantes.Select(m => m.FabricanteId).Max() + 1;
-            //context.Fabricantes.Add(fabricante);
-            //context.SaveChanges();
+            //fabricantes.Add(fabricante);
+            //fabricante.FabricanteId = fabricantes.Select(m => m.FabricanteId).Max() + 1;
+            context.Fabricantes.Add(fabricante);
+            context.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -56,8 +56,8 @@ namespace WebAppProjeto01G1.Controllers
                 //return RedirectToAction("PaginaErro");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Fabricante fabricante = context.Fabricantes.Find(id);
-            Fabricante fabricante = fabricantes.Where(m => m.FabricanteId == id).First();
+            Fabricante fabricante = context.Fabricantes.Find(id);
+            //Fabricante fabricante = fabricantes.Where(m => m.FabricanteId == id).First();
             if (fabricante == null)
             {
                 return HttpNotFound();
@@ -72,11 +72,11 @@ namespace WebAppProjeto01G1.Controllers
         {
             if (ModelState.IsValid)
             {
-                fabricantes.Remove(
-                  fabricantes.Where(c => c.FabricanteId == fabricante.FabricanteId).First());
-                fabricantes.Add(fabricante);
-                //context.Entry(fabricante).State = EntityState.Modified;
-                //context.SaveChanges();
+                //fabricantes.Remove(
+                //  fabricantes.Where(c => c.FabricanteId == fabricante.FabricanteId).First());
+                //fabricantes.Add(fabricante);
+                context.Entry(fabricante).State = EntityState.Modified;
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(fabricante);
@@ -89,8 +89,8 @@ namespace WebAppProjeto01G1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Fabricante fabricante = context.Fabricantes.Find(id);
-            Fabricante fabricante = fabricantes.Where(m => m.FabricanteId == id).First();
+            Fabricante fabricante = context.Fabricantes.Find(id);
+            //Fabricante fabricante = fabricantes.Where(m => m.FabricanteId == id).First();
             if (fabricante == null)
             {
                 return HttpNotFound();
@@ -107,8 +107,8 @@ namespace WebAppProjeto01G1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Fabricante fabricante = context.Fabricantes.Find(id);
-            Fabricante fabricante = fabricantes.Where(m => m.FabricanteId == id).First();
+            Fabricante fabricante = context.Fabricantes.Find(id);
+            //Fabricante fabricante = fabricantes.Where(m => m.FabricanteId == id).First();
             if (fabricante == null)
             {
                 return HttpNotFound();
@@ -121,11 +121,11 @@ namespace WebAppProjeto01G1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Fabricante fabricante = fabricantes.Where(c => c.FabricanteId == id).First();
-            fabricantes.Remove(fabricante);
-            //Fabricante fabricante = context.Fabricantes.Find(id);
-            //context.Fabricantes.Remove(fabricante);
-            //context.SaveChanges();
+            //Fabricante fabricante = fabricantes.Where(c => c.FabricanteId == id).First();
+            //fabricantes.Remove(fabricante);
+            Fabricante fabricante = context.Fabricantes.Find(id);
+            context.Fabricantes.Remove(fabricante);
+            context.SaveChanges();
             return RedirectToAction("Index");
         }
 
