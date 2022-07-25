@@ -3,6 +3,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Listagem de FABRICANTES";
 }
+
+@if (@TempData["Message"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Message"]
+    </div>
+}
+
 <div class="panel panel-primary">
     <div class="panel-heading">
         Relação de FABRICANTES registrados
@@ -51,10 +59,15 @@
     <script src="@Url.Content("~/scripts/DataTables-1.10.2/jquery.dataTables.js")"></script>
     <script src="@Url.Content("~/scripts/DataTables-1.10.2/dataTables.bootstrap.js")"></script>
     <script type="text/javascript">
-$(document).ready(function () {
-    $('.table').dataTable({
-        "order": [[1, "asc"]]
-    });
-});
+        $(document).ready(function () {
+            $('.table').dataTable({
+                "order": [[1, "asc"]]
+            });
+
+            $('li').removeClass("active");
+
+            $('#liFabricantes').addClass("active");
+
+        });
     </script>
 }

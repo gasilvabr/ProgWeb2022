@@ -124,6 +124,7 @@ namespace WebAppProjeto01G2.Controllers
             context.SaveChanges();
             //Fabricante fabricante = fabricantes.Where(c => c.FabricanteId == id).First();
             //fabricantes.Remove(fabricante);
+            TempData["Message"] = "Fabricante " + fabricante.Nome.ToUpper() + " foi removido";
             return RedirectToAction("Index");
         }
 
