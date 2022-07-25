@@ -9,5 +9,6 @@ namespace WebAppProjeto01G2.Models
     {
         public long CategoriaId { get; set; }
         public string Nome { get; set; }
+        public virtual ICollection<Produto> Produtos { get; set; }
     }
 }
