@@ -54,24 +54,25 @@
         </table>
     </div>
     <div class="panel-footer panel-info">
-        @Html.ActionLink("Registrar um novo PRODUTO", "Create", null,
-        new { @class = "btn btn-success" })
+        @Html.ActionLink("Registrar um novo PRODUTO", "Create", null, new { @class = "btn btn-success" })
     </div>
 </div>
 @section styles{
-    <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")"
+    <link href="@Url.Content("~/content/DataTables-1.10.2/css/dataTables.bootstrap.css")"
           rel="stylesheet">
 }
 @section ScriptPage {
-    <script src=" @Url.Content("~/scripts/DataTables/jquery. dataTables.js")"></script>
-    <script src="@Url.Content("~/scripts/DataTables/dataTables.bootstrap.js")"></script>
+    <script src="@Url.Content("~/scripts/DataTables-1.10.2/jquery.dataTables.js")"></script>
+    <script src="@Url.Content("~/scripts/DataTables-1.10.2/dataTables.bootstrap.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('li').removeClass("active");
-            $('#liProdutos').addClass("active");
             $('.table').dataTable({
                 "order": [[1, "asc"]]
             });
+
+            $('li').removeClass("active");
+
+            $('#liProdutos').addClass("active");
         });
     </script>
 }
