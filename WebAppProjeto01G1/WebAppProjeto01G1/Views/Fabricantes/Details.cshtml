@@ -25,3 +25,4 @@
         @Html.ActionLink("Retornar para a listagem", "Index", null, new { @class = "btn btn-info" })
     </div>
 </div>
+@Html.Partial("~/Views/Produtos/_PorFabricante.cshtml", Model.Produtos.ToList())
