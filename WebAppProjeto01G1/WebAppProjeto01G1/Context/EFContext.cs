@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using Modelo.Cadastros;
+using Modelo.Tabelas;
 
 namespace WebAppProjeto01G1.Models
 {

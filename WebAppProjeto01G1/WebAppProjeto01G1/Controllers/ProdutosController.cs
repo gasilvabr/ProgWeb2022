@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using WebAppProjeto01G1.Models;
 using System.Net;
+using Modelo.Cadastros;
 
 namespace WebAppProjeto01G1.Controllers
 {
