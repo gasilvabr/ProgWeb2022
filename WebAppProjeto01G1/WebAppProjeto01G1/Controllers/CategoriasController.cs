@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebAppProjeto01G1.Models;
 using Modelo.Tabelas;
 
 namespace WebAppProjeto01G1.Controllers

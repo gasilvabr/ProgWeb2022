@@ -63,8 +63,9 @@ namespace WebAppProjeto01G1.Controllers
             try
             {
                 // TODO: Add insert logic here
-                context.Produtos.Add(produto);
-                context.SaveChanges();
+                //context.Produtos.Add(produto);
+                //context.SaveChanges();
+                produtoServico.GravarProduto(produto);
                 return RedirectToAction("Index");
             }
             catch
@@ -105,8 +106,9 @@ namespace WebAppProjeto01G1.Controllers
             {
                 // TODO: Add update logic here
 
-                context.Entry(produto).State = EntityState.Modified;
-                context.SaveChanges();
+                //context.Entry(produto).State = EntityState.Modified;
+                //context.SaveChanges();
+                produtoServico.GravarProduto(produto);
                 return RedirectToAction("Index");
             }
             catch
@@ -138,9 +140,10 @@ namespace WebAppProjeto01G1.Controllers
             try
             {
                 // TODO: Add delete logic here
-                Produto produto = context.Produtos.Find(id);
-                context.Produtos.Remove(produto);
-                context.SaveChanges();
+                //Produto produto = context.Produtos.Find(id);
+                //context.Produtos.Remove(produto);
+                //context.SaveChanges();
+                Produto produto = produtoServico.EliminarProdutoPorId(id);
                 TempData["Message"] = "Produto " + produto.Nome.ToUpper() + " foi removido";
                 return RedirectToAction("Index");
             }

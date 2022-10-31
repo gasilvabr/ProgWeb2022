@@ -3,10 +3,11 @@ using Modelo.Tabelas;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
-namespace WebAppProjeto01G2.Models
+namespace Persistencia.Contexts
 {
     public class EFContext : DbContext
     {
@@ -18,5 +19,11 @@ namespace WebAppProjeto01G2.Models
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Fabricante> Fabricantes { get; set; }
         public DbSet<Produto> Produtos { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
     }
 }
