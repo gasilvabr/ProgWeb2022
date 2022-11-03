@@ -70,6 +70,10 @@ namespace WebAppProjeto01G1.Controllers
             }
             catch
             {
+                ViewBag.CategoriaId = new SelectList(categoriaServico.ObterCategoriasClassificadasPorNome(),
+                "CategoriaId", "Nome");
+                ViewBag.FabricanteId = new SelectList(fabricanteServico.ObterFabricantesClassificadosPorNome(),
+                "FabricanteId", "Nome");
                 return View();
             }
         }
