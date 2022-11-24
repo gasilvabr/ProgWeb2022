@@ -8,6 +8,7 @@ using System.Net;
 using Modelo.Cadastros;
 using Servico.Cadastros;
 using Servico.Tabelas;
+using System.IO;
 
 namespace WebAppProjeto01G2.Controllers
 {
@@ -70,6 +71,8 @@ namespace WebAppProjeto01G2.Controllers
             }
             catch
             {
+                ViewBag.CategoriaId = new SelectList(categoriaServico.ObterCategoriasClassificadasPorNome(), "CategoriaId", "Nome");
+                ViewBag.FabricanteId = new SelectList(fabricanteServico.ObterFabricantesClassificadosPorNome(), "FabricanteId", "Nome");
                 return View();
             }
         }
@@ -94,9 +97,110 @@ namespace WebAppProjeto01G2.Controllers
 
             return View(produto);
         }
+        // Metodo Privado
+        private void PopularViewBag(Produto produto = null)
+        {
+            if (produto == null)
+            {
+                ViewBag.CategoriaId = new SelectList(categoriaServico.ObterCategoriasClassificadasPorNome(),
+                "CategoriaId", "Nome");
+                ViewBag.FabricanteId = new SelectList(fabricanteServico.ObterFabricantesClassificadosPorNome(),
+                "FabricanteId", "Nome");
+            }
+            else
+            {
+                ViewBag.CategoriaId = new SelectList(categoriaServico.ObterCategoriasClassificadasPorNome(),
+                "CategoriaId", "Nome", produto.CategoriaId);
+                ViewBag.FabricanteId = new SelectList(fabricanteServico.ObterFabricantesClassificadosPorNome(),
+                "FabricanteId", "Nome", produto.FabricanteId);
+            }
+        }
 
-        // POST: Produtos/Edit/5
+        private byte[] SetLogotipo(HttpPostedFileBase logotipo)
+        {
+            var bytesLogotipo = new byte[logotipo.ContentLength];
+            logotipo.InputStream.Read(bytesLogotipo, 0, logotipo.ContentLength);
+            return bytesLogotipo;
+        }
+
+        private ActionResult GravarProduto(Produto produto, 
+            HttpPostedFileBase logotipo, string chkRemoverImagem)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (chkRemoverImagem != null)
+                    {
+                        produto.Logotipo = null;
+                    }
+                    if (logotipo != null)
+                    {
+                        produto.LogotipoMimeType = logotipo.ContentType;
+                        produto.Logotipo = SetLogotipo(logotipo); // Faz upload no banco de dados
+                        produto.NomeArquivo = logotipo.FileName;
+                        produto.TamanhoArquivo = logotipo.ContentLength;
+
+                        // Fazendo o upload na pasta do servidor
+                        string strFilename = Server.MapPath("~/App_Data/" + produto.NomeArquivo);
+                        logotipo.SaveAs(strFilename);
+                    }
+                    produtoServico.GravarProduto(produto);
+                    return RedirectToAction("Index");
+                }
+                PopularViewBag(produto);
+                return View(produto);
+            }
+            catch
+            {
+                PopularViewBag(produto);
+                return View(produto);
+            }
+        }
+
+        public ActionResult DownloadArquivo(long id)
+        {
+            Produto produto = produtoServico.ObterProdutoPorId(id);
+            FileStream fileStream = new FileStream(Server.MapPath("~/App_Data/" + produto.NomeArquivo), FileMode.Open, FileAccess.Read);
+            return File(fileStream.Name, produto.LogotipoMimeType, produto.NomeArquivo);
+        }
+/*        public ActionResult DownloadArquivo(long id)
+        {
+            Produto produto = produtoServico.ObterProdutoPorId(id);
+            FileStream fileStream = new FileStream(Server.MapPath("~/App_Data/" + produto.NomeArquivo), FileMode.Create,FileAccess.Write);
+            fileStream.Write(produto.Logotipo, 0, Convert.ToInt32(produto.TamanhoArquivo));
+            fileStream.Close();
+            return File(fileStream.Name, produto.LogotipoMimeType, produto.NomeArquivo);
+        }*/
+
         [HttpPost]
+        public ActionResult Edit(Produto produto, 
+            HttpPostedFileBase logotipo = null, string chkRemoverImagem = null)
+        {
+            return GravarProduto(produto, logotipo, chkRemoverImagem);
+        }
+
+        public FileContentResult GetLogotipo(long id)
+        {
+            Produto produto = produtoServico.ObterProdutoPorId(id);
+            if (produto != null)
+            {
+                return File(produto.Logotipo, produto.LogotipoMimeType);
+            }
+            return null;
+        }
+
+        public string GetLogotipoName(long id)
+        {
+            Produto produto = produtoServico.ObterProdutoPorId(id);
+            if (produto != null)
+            {
+                return Server.MapPath("~/App_Data/" + produto.NomeArquivo);
+            }
+            return null;
+        }
+        // POST: Produtos/Edit/5
+        /*[HttpPost]
         public ActionResult Edit(Produto produto)
         {
             try
@@ -111,7 +215,7 @@ namespace WebAppProjeto01G2.Controllers
             {
                 return View();
             }
-        }
+        }*/
 
         // GET: Produtos/Delete/5
         public ActionResult Delete(long? id)
