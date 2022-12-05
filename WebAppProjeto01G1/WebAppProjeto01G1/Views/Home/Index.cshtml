@@ -1,0 +1,75 @@
+﻿@model WebAppProjeto01G1.Models.HomeClass
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>Destaques</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Produto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.listaprodutoDestaques)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProdutoId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <hr />
+    <h4>Lancamentos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Produto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.listaProdutoLancamento)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProdutoId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -234,6 +234,7 @@
     <Content Include="Views\Produtos\_PartialDetailsContentPanel.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Produtos\_PartialEditContentPanel.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -244,8 +245,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Context\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Modelo\Modelo.csproj">

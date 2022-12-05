@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Modelo.Cadastros;
 
 namespace WebAppProjeto01G1.Models
 {
     public class HomeClass
     {
-        List<Modelo.Cadastros.Produto> listaProdutoLancamento;
-        List<Modelo.Cadastros.Produto> listaprodutoDestaques;
+        public IQueryable<Produto> listaProdutoLancamento;
+        public IQueryable<Produto> listaprodutoDestaques;
     }
 }
