@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Modelo.Tabelas;
 
-namespace WebAppProjeto01G2.Controllers
+namespace WebAppProjeto01G2.Areas.Tabelas.Controllers
 {
     public class CategoriasController : Controller
     {

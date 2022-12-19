@@ -163,6 +163,25 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\DataTables-1.10.2\css\dataTables.responsive.scss" />
     <Content Include="Content\DataTables-1.10.2\css\dataTables.jqueryui.scss" />
+    <Content Include="Areas\Cadastros\Views\web.config" />
+    <Content Include="Areas\Tabelas\Views\web.config" />
+    <Content Include="Areas\Cadastros\Views\Fabricantes\Index.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Fabricantes\Create.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Fabricantes\Edit.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Fabricantes\Details.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Fabricantes\Delete.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Produtos\Index.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Produtos\Details.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Produtos\Create.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Produtos\Edit.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Produtos\Delete.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Produtos\_PartialDetailsContentPanel.cshtml" />
+    <Content Include="Areas\Cadastros\Views\Produtos\_PartialEditContentPanel.cshtml" />
+    <Content Include="Areas\Tabelas\Views\Categorias\Index.cshtml" />
+    <Content Include="Areas\Tabelas\Views\Categorias\Create.cshtml" />
+    <Content Include="Areas\Tabelas\Views\Categorias\Edit.cshtml" />
+    <Content Include="Areas\Tabelas\Views\Categorias\Details.cshtml" />
+    <Content Include="Areas\Tabelas\Views\Categorias\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -200,9 +219,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CategoriasController.cs" />
-    <Compile Include="Controllers\FabricantesController.cs" />
-    <Compile Include="Controllers\ProdutosController.cs" />
+    <Compile Include="Areas\Cadastros\CadastrosAreaRegistration.cs" />
+    <Compile Include="Areas\Tabelas\TabelasAreaRegistration.cs" />
+    <Compile Include="Areas\Tabelas\Controllers\CategoriasController.cs" />
+    <Compile Include="Areas\Cadastros\Controllers\FabricantesController.cs" />
+    <Compile Include="Areas\Cadastros\Controllers\ProdutosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -242,7 +263,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Cadastros\Data\" />
+    <Folder Include="Areas\Cadastros\Views\Shared\" />
+    <Folder Include="Areas\Tabelas\Data\" />
+    <Folder Include="Areas\Tabelas\Views\Shared\" />
     <Folder Include="Context\" />
+    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

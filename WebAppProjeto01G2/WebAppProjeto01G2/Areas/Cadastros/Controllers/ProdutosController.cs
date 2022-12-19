@@ -10,7 +10,7 @@ using Servico.Cadastros;
 using Servico.Tabelas;
 using System.IO;
 
-namespace WebAppProjeto01G2.Controllers
+namespace WebAppProjeto01G2.Areas.Cadastros.Controllers
 {
     public class ProdutosController : Controller
     {
