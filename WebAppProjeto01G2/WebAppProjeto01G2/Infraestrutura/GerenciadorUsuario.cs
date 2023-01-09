@@ -23,6 +23,4 @@ namespace WebAppProjeto01G2.Infraestrutura
             return manager;
         }
     }
-
-}
 }

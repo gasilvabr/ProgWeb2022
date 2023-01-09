@@ -24,6 +24,8 @@ namespace WebAppProjeto01G2.DAL
         public class IdentityDbInit : DropCreateDatabaseIfModelChanges<IdentityDbContextAplicacao>
         {
         }
+
+        public System.Data.Entity.DbSet<WebAppProjeto01G2.Areas.Seguranca.Models.Usuario> Usuarios { get; set; }
     }
 
 }
