@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<WebAppProjeto01G2.Areas.Seguranca.Models.Usuario>
-
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Listagem de USUÁRIOS";
@@ -73,17 +72,17 @@
           rel="stylesheet">
 }
 @section ScriptPage {
-    <script src=" @Url.Content("~/scripts/DataTables/jquery.dataTables.js")">
+    <script src=" @Url.Content("~/scripts/DataTables/jquery. dataTables.js")">
     </script>
     <script src="@Url.Content("~/scripts/DataTables/dataTables.bootstrap.js")">
     </script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('li').removeClass("active");
-            $('#liUsuarios').addClass("active");
-            $('.table').dataTable({
-                "order": [[1, "asc"]]
-            });
-        });
+$(document).ready(function () {
+$('li').removeClass("active");
+$('#liUsuarios').addClass("active");
+$('.table').dataTable({
+"order": [[1, "asc"]]
+});
+});
     </script>
 }

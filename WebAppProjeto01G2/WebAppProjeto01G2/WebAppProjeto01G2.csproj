@@ -124,6 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Seguranca\Views\Admin\Index.cshtml" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -213,7 +214,6 @@
     <Content Include="Areas\Tabelas\Views\Categorias\Details.cshtml" />
     <Content Include="Areas\Tabelas\Views\Categorias\Delete.cshtml" />
     <Content Include="Areas\Seguranca\Views\web.config" />
-    <Content Include="Areas\Seguranca\Views\Admin\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
